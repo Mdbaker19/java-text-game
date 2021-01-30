@@ -129,11 +129,21 @@ public class Art {
         String choice = sc.getInput("What would you like to use?");
 
         if(choice.equalsIgnoreCase("potion")){
-            System.out.println("using Potion");
+            System.out.println("Using Potion, Healed by 45");
+            player.setHealth(player.getHealth() + 45);
+            player.useItem("Potion");
         } else if(choice.equalsIgnoreCase("antidote")){
-            System.out.println("using Antidote");
+            System.out.println("Using Antidote");
+            if(player.getStatus().equals("poison")) {
+                System.out.println("healing poison");
+                player.setStatus("Normal");
+                player.useItem("Antidote");
+            } else {
+                System.out.println("You do not need this item");
+            }
         } else if(choice.equalsIgnoreCase("critical")){
-            System.out.println("using Critical");
+            System.out.println("Using Critical");
+            player.useItem("Critical");
         }
 
     }
