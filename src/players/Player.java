@@ -10,6 +10,7 @@ public class Player extends Character{
     private HashMap<String, Integer> stats = new HashMap<>();
     private HashMap<String, Integer> inventory = new HashMap<>();
     private Input sc = new Input();
+    private String status;
 
     public Player(){
         this.name = sc.getInput("Name Please");
@@ -45,20 +46,13 @@ public class Player extends Character{
     }
 
     public int attack(){
-        int currAttack = this.getStats().get("Attack");
-        int dmg = 0;
-
-        dmg+=currAttack;
-
-        return dmg;
+        return this.getStats().get("Attack");
     }
 
-    public double blockChance(){
+    public boolean blockChance(){
+        int ran = (int) Math.floor(Math.random() * 100);
         int currAgil = this.getStats().get("Agility");
-        double chanceToBlock = 1;
-
-
-        return chanceToBlock;
+        return (currAgil * 1.25) > ran;
     }
     public HashMap<String, Integer> getStats() {
         return stats;
@@ -82,5 +76,15 @@ public class Player extends Character{
             this.inventory.put(type, quantity);
         }
     }
+    public void useItem(String type){
+        this.inventory.put(type, this.inventory.get(type) - 1);
+    }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

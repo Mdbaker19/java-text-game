@@ -19,6 +19,15 @@ public class Input {
         return this.sc.next();
     }
 
+    public String getAction(String message){
+        System.out.println(message);
+        String choice = this.sc.next();
+        if(!choice.equalsIgnoreCase("a") && !choice.equalsIgnoreCase("i")){
+            return getAction("Please choose either A for attack or I for inventory");
+        }
+        return choice;
+    }
+
     public int getNum(){
         return this.sc.nextInt();
     }

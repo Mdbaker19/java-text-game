@@ -3,7 +3,7 @@ package players;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Enemy extends Character{
+public class Enemy {
 
     private HashMap<String, Integer> stats = new HashMap<>();
 
@@ -27,22 +27,15 @@ public class Enemy extends Character{
     }
 
     public int attack(){
-        int currAttack = this.getStats().get("Attack");
-        int dmg = 0;
-
-        dmg+=currAttack;
-
-        return dmg;
+        return this.getStats().get("Attack");
     }
 
-    public double blockChance(){
+    public boolean blockChance(){
+        int ran = (int) Math.floor(Math.random() * 100);
         int currAgil = this.getStats().get("Agility");
-        double chanceToBlock = 1;
-
-
-
-        return chanceToBlock;
+        return (currAgil * 1.25) > ran;
     }
+
 
     public HashMap<String, Integer> getStats() {
         return stats;

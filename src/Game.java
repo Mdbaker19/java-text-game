@@ -32,10 +32,20 @@ public class Game {
 
 
     public static void startGame(Player you){
+        Input sc = new Input();
         int fights = 1;
         you.viewStats(you);
-        if(battle(you, fights)) fights++;
-        System.out.printf("You have won %d fights%n", fights - 1);
+        do {
+            if (battle(you, fights)) {
+                fights++;
+            } else {
+                System.out.println("Looks like you lost");
+            }
+            System.out.printf("You have won %d fights%n", fights - 1);
+            if(!sc.getInput("Would you like to fight again? [Y]es / [N]o").equalsIgnoreCase("y")) {
+                break;
+            }
+        } while (true);
     }
 
     public static boolean battle(Player you, int fightNumber){
@@ -44,31 +54,42 @@ public class Game {
         Enemy enemy = new Enemy(fightNumber);
         boolean win = false;
 
+        double enemyDefenseMultiplier =  Math.floor( 100 - enemy.getStats().get("Defense")) / 100;
+        double playerDefenseMultiplier = Math.floor( 100 - you.getStats().get("Defense")) / 100;
+
         do{
             art.hud(you);
-            String turn = sc.getInput("Your move");
+            String turn = sc.getAction("Your move");
             if (turn.equalsIgnoreCase("i")) {
                 art.viewInventory(you);
             } else if(turn.equalsIgnoreCase("a")){
-                int yourDamage = you.attack();
-                System.out.println("You deal " +yourDamage+" damage");
+                int yourDamage = (int) (you.attack() * enemyDefenseMultiplier);
+                if(enemy.blockChance()){
+                    System.out.println("You missed");
+                    yourDamage = 0;
+                } else {
+                    System.out.println("You deal " + yourDamage + " damage");
+                }
                 enemy.setHealth(enemy.getHealth() - yourDamage);
+                if(enemy.getHealth() <= 0) {
+                    System.out.println("You have won the fight");
+                    win = true;
+                    break;
+                }
             }
 
-            int enemyDmg = enemy.attack();
-            System.out.println("Enemy deals " +enemyDmg+" damage");
+            int enemyDmg = (int) (enemy.attack() - playerDefenseMultiplier);
+            if(you.blockChance()){
+                System.out.println("You dodged the attack");
+                enemyDmg = 0;
+            } else {
+                System.out.println("Enemy deals " + enemyDmg + " damage");
+            }
             you.setHealth(you.getHealth() - enemyDmg);
 
             System.out.printf("%-50s Enemy Health: %d%n", " ", enemy.getHealth());
 
         }while(you.getHealth() > 0 && enemy.getHealth() > 0);
-
-        if(you.getHealth() > 0){
-            System.out.println("You have won the fight");
-            win = true;
-        } else {
-            System.out.println("Looks like you lost");
-        }
 
         return win;
     }
