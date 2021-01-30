@@ -32,18 +32,43 @@ public class Game {
 
 
     public static void startGame(Player you){
-        int fights = 0;
+        int fights = 1;
         you.viewStats(you);
         if(battle(you, fights)) fights++;
+        System.out.printf("You have won %d fights%n", fights - 1);
     }
 
     public static boolean battle(Player you, int fightNumber){
+        Art art = new Art();
+        Input sc = new Input();
         Enemy enemy = new Enemy(fightNumber);
         boolean win = false;
 
         do{
+            art.hud(you);
+            String turn = sc.getInput("Your move");
+            if (turn.equalsIgnoreCase("i")) {
+                art.viewInventory(you);
+            } else if(turn.equalsIgnoreCase("a")){
+                int yourDamage = you.attack();
+                System.out.println("You deal " +yourDamage+" damage");
+                enemy.setHealth(enemy.getHealth() - yourDamage);
+            }
 
-        }while(you.getStats().get("Health") > 0 || enemy.getStats().get("Health") > 0);//healths > 0;
+            int enemyDmg = enemy.attack();
+            System.out.println("Enemy deals " +enemyDmg+" damage");
+            you.setHealth(you.getHealth() - enemyDmg);
+
+            System.out.printf("%-50s Enemy Health: %d%n", " ", enemy.getHealth());
+
+        }while(you.getHealth() > 0 && enemy.getHealth() > 0);
+
+        if(you.getHealth() > 0){
+            System.out.println("You have won the fight");
+            win = true;
+        } else {
+            System.out.println("Looks like you lost");
+        }
 
         return win;
     }
