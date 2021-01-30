@@ -1,6 +1,7 @@
-Add deduction from inventory
-Option to exit inventory after viewing and if no item used turn is still yours
-Block chance needs to be taken into account
-Poison chance
-Critical chance
-Display player and enemy
+[ ] Add deduction from inventory
+[ ] Option to exit inventory after viewing and if no item used turn is still yours
+[ ] Block chance needs to be taken into account based off agility
+[ ] Poison chance
+[ ] Critical chance
+[ ] Display player and enemy
+[ ] Damage needs to be taken into account based off attack and other player's defense

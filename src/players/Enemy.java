@@ -3,7 +3,7 @@ package players;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Enemy extends Character{
+public class Enemy {
 
     private HashMap<String, Integer> stats = new HashMap<>();
 
@@ -43,6 +43,7 @@ public class Enemy extends Character{
 
         return chanceToBlock;
     }
+
 
     public HashMap<String, Integer> getStats() {
         return stats;

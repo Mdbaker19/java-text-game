@@ -34,7 +34,11 @@ public class Game {
     public static void startGame(Player you){
         int fights = 1;
         you.viewStats(you);
-        if(battle(you, fights)) fights++;
+        if(battle(you, fights)) {
+            fights++;
+        } else {
+            System.out.println("Looks like you lost");
+        }
         System.out.printf("You have won %d fights%n", fights - 1);
     }
 
@@ -44,31 +48,32 @@ public class Game {
         Enemy enemy = new Enemy(fightNumber);
         boolean win = false;
 
+        double enemyDefenseMultiplier =  Math.floor( 100 - enemy.getStats().get("Defense")) / 100;
+        double playerDefenseMultiplier = Math.floor( 100 - you.getStats().get("Defense")) / 100;
+
         do{
             art.hud(you);
             String turn = sc.getInput("Your move");
             if (turn.equalsIgnoreCase("i")) {
                 art.viewInventory(you);
             } else if(turn.equalsIgnoreCase("a")){
-                int yourDamage = you.attack();
+                int yourDamage = (int) (you.attack() * enemyDefenseMultiplier);
                 System.out.println("You deal " +yourDamage+" damage");
                 enemy.setHealth(enemy.getHealth() - yourDamage);
+                if(enemy.getHealth() <= 0) {
+                    System.out.println("You have won the fight");
+                    win = true;
+                    break;
+                }
             }
 
-            int enemyDmg = enemy.attack();
+            int enemyDmg = (int) (enemy.attack() - playerDefenseMultiplier);
             System.out.println("Enemy deals " +enemyDmg+" damage");
             you.setHealth(you.getHealth() - enemyDmg);
 
             System.out.printf("%-50s Enemy Health: %d%n", " ", enemy.getHealth());
 
         }while(you.getHealth() > 0 && enemy.getHealth() > 0);
-
-        if(you.getHealth() > 0){
-            System.out.println("You have won the fight");
-            win = true;
-        } else {
-            System.out.println("Looks like you lost");
-        }
 
         return win;
     }

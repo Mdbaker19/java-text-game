@@ -11,11 +11,71 @@ public class Art {
     public Art(){}
 
     public void playerNormal(){
-        System.out.printf("%-10s {˙˙˙˙˙˙˙}%n", " ");
-        System.out.printf("%-10s {      o|%n", " ");
-        System.out.printf("%-10s ^^^|  |^^%n", " ");
-        System.out.printf("%-10s  __[  ]__%n", " ");
-        System.out.printf("%-7s___{        }___%n", " ");
+        System.out.println();
+        System.out.println();
+        System.out.printf("%-10s        \\\\\\|||///%n", " ");
+        System.out.printf("%-10s      .  =======%n", " ");
+        System.out.printf("%-10s     / \\| O   O |%n", " ");
+        System.out.printf("%-10s     \\ / \\`___'/%n", " ");
+        System.out.printf("%-8s        #   _| |_%n", " ");
+        System.out.printf("%-8s       (#) (     )%n", " ");
+        System.out.printf("%-8s        #\\//|* *|\\\\%n", " ");
+        System.out.printf("%-8s        #\\/(  *  )/%n", " ");
+        System.out.printf("%-8s        #   =====%n", " ");
+        System.out.printf("%-8s        #   ( U )%n", " ");
+        System.out.printf("%-8s        #   || ||%n", " ");
+        System.out.printf("%-8s       .#___'| |`____.%n", " ");
+        System.out.printf("%-8s       `#----' `-----'%n", " ");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+    }
+
+    public void enemyAnimal() {
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.printf("%-10s                   .\"`\".%n", " ");
+        System.out.printf("%-10s               .-./ _=_ \\.-.%n", " ");
+        System.out.printf("%-10s              {  (,(oYo),) }}%n", " ");
+        System.out.printf("%-10s              {{ |   \"   |} }%n", " ");
+        System.out.printf("%-10s              { { \\(---)/  }}%n", " ");
+        System.out.printf("%-10s              {{  }'-=-'{ } }%n", " ");
+        System.out.printf("%-10s              { { }._:_.{  }}%n", " ");
+        System.out.printf("%-10s              {{  } -:- { } }%n", " ");
+        System.out.printf("%-10s              {_{ }`===`{  _}%n", " ");
+        System.out.printf("%-10s             ((((\\)     (/))))%n", " ");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+    }
+
+    public void enemyInsect(){
+        System.out.printf("%-10s                   ,--.       ,---.%n", " ");
+        System.out.printf("%-10s                   /    '.    /     \\%n", " ");
+        System.out.printf("%-10s                         \\  ;%n", " ");
+        System.out.printf("%-10s                          \\-|%n", " ");
+        System.out.printf("%-10s                          (ø ø)      (/%n", " ");
+        System.out.printf("%-10s                          /ˆˆˆ     ,-'%n", " ");
+        System.out.printf("%-10s                  ,------/ >< \\---'%n", " ");
+        System.out.printf("%-10s                 /)     ;  --  :%n", " ");
+        System.out.printf("%-10s                    ,---| ---- |--.%n", " ");
+        System.out.printf("%-10s                   ;    | ---- |   :%n", " ");
+        System.out.printf("%-10s                  (|  ,-| ---- |-. |)%n", " ");
+        System.out.printf("%-10s                     | /| ---- |\\ |%n", " ");
+        System.out.printf("%-10s                     |/ | ---- | \\|%n", " ");
+        System.out.printf("%-10s                     \\  : ---- ;  |%n", " ");
+        System.out.printf("%-10s                      \\  \\ -- /  /%n", " ");
+        System.out.printf("%-10s                      ;   \\  /  :%n", " ");
+        System.out.printf("%-10s                     /   / \\/ \\  \\%n", " ");
+        System.out.printf("%-10s                    /)           (\\%n", " ");
+    }
+
+    public static void main(String[] args) {
+        Art a = new Art();
+        a.enemyInsect();
     }
 
     public void welcome(){
