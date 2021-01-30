@@ -10,20 +10,4 @@ public class Character {
             System.out.println(v.getKey() + " : " + v.getValue());
         }
     }
-
-    public int attack(Player player){
-        int currAttack = player.getStats().get("Attack");
-        int dmg = 0;
-
-        return dmg;
-    }
-
-    public double blockChance(Player player){
-        int currAgil = player.getStats().get("Agility");
-        double chanceToBlock = 1;
-
-
-        return chanceToBlock;
-    }
-
 }

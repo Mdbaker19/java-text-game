@@ -19,15 +19,35 @@ public class Enemy extends Character{
         this.addStat("Agility", agility);
     }
 
+    public int getHealth(){
+        return this.getStats().get("Health");
+    }
+    public void setHealth(int newHealth){
+        this.getStats().put("Health", newHealth);
+    }
 
+    public int attack(){
+        int currAttack = this.getStats().get("Attack");
+        int dmg = 0;
+
+        dmg+=currAttack;
+
+        return dmg;
+    }
+
+    public double blockChance(){
+        int currAgil = this.getStats().get("Agility");
+        double chanceToBlock = 1;
+
+
+
+        return chanceToBlock;
+    }
 
     public HashMap<String, Integer> getStats() {
         return stats;
     }
 
-    public void setStats(HashMap<String, Integer> stats) {
-        this.stats = stats;
-    }
     public void addStat(String type, int value){
         this.stats.put(type, value);
     }
