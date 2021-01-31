@@ -36,6 +36,11 @@ public class Enemy {
         return (currAgil * 1.25) > ran;
     }
 
+    public boolean poisonAttack(){
+        int ran = (int) Math.floor(Math.random() * 100);
+        return ran < 10;
+    }
+
 
     public HashMap<String, Integer> getStats() {
         return stats;
