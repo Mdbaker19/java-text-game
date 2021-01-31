@@ -38,14 +38,25 @@ public class Game {
         do {
             if (battle(you, fights)) {
                 fights++;
+                System.out.println("Gained 50xp");
+                you.gainXP(50);
+                you.setLevel();
+                System.out.println("Curr exp: " +you.getExp());
+                System.out.println("Curr level: " + you.getLevel());
+                you.viewStats(you);
             } else {
                 System.out.println("Looks like you lost");
             }
-            System.out.printf("You have won %d fights%n", fights - 1);
-            if(!sc.getInput("Would you like to fight again? [Y]es / [N]o").equalsIgnoreCase("y")) {
+            System.out.printf("You have won %d fights, %d more to fight the boss%n", fights - 1, 5 - fights);
+            if(!sc.getInput("Would you like to fight again and keep training? [Y]es / [N]o").equalsIgnoreCase("y")) {
                 break;
             }
         } while (true);
+
+        if(fights >= 5){
+            System.out.println("somethings coming...");
+//            bossFight();
+        }
     }
 
     public static boolean battle(Player you, int fightNumber){

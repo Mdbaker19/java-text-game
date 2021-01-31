@@ -144,6 +144,7 @@ public class Art {
         } else if(choice.equalsIgnoreCase("critical")){
             System.out.println("Using Critical");
             player.useItem("Critical");
+            player.setStatus("Critical");
         }
 
     }

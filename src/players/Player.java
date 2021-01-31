@@ -11,14 +11,41 @@ public class Player extends Character{
     private HashMap<String, Integer> inventory = new HashMap<>();
     private Input sc = new Input();
     private String status;
+    private int level;
+    public int exp;
 
     public Player(){
+        this.level = 1;
+        int health;
+        int attack;
+        int defense;
+        int agility;
         this.name = sc.getInput("Name Please");
-        System.out.printf("Nice to meet you %s%n", this.getName());
-        int health = sc.getNum("You can set your health", 0, 100);
-        int attack = sc.getNum("You can set your attack", 0, 20);
-        int defense = sc.getNum("You can set your defense", 0, 20);
-        int agility = sc.getNum("You can set your agility", 0, 10);
+        String path = sc.getInput("What class would you like to pick? [P]aladin, [T]hief, [N]othing Special", "p", "t", "n");
+
+        if(path.equalsIgnoreCase("p")){
+            health = 125;
+            attack = 12;
+            defense = 15;
+            agility = 6;
+            System.out.printf("Nice to meet you Paladin %s%n", this.getName());
+            System.out.println("You have extra health, defense and attack at the cost of agility");
+        } else if(path.equalsIgnoreCase("t")){
+            health = 85;
+            attack = 12;
+            defense = 8;
+            agility = 18;
+            System.out.printf("Nice to meet you Thief %s%n", this.getName());
+            System.out.println("You have extra agility and attack at the cost of health and defense");
+        } else {
+            health = 100;
+            attack = 10;
+            defense = 10;
+            agility = 10;
+            System.out.printf("Nice to meet you Human %s%n", this.getName());
+            System.out.println("You are nothing special....");
+        }
+
         this.addStat("Health", health);
         this.addStat("Attack", attack);
         this.addStat("Defense", defense);
@@ -28,7 +55,31 @@ public class Player extends Character{
         this.addItem("Antidote", 1);
     }
 
+    public int getLevel(){
+        return this.level;
+    }
+    public int getExp(){
+        return this.exp;
+    }
 
+    public void setLevel(){
+        if(this.exp >= 100){
+            this.level += 1;
+            this.exp-=100;
+            increaseStatsFromLevelUp();
+        }
+    }
+    private void increaseStatsFromLevelUp(){
+        HashMap<String, Integer> currStats = this.getStats();
+        HashMap<String, Integer> leveledStats = new HashMap<>();
+        for(Map.Entry<String, Integer> stat : currStats.entrySet()){
+            leveledStats.put(stat.getKey(), stat.getValue() + 5); // probably come back to this for a better calculation
+        }
+        this.setStats(leveledStats);
+    }
+    public void gainXP(int exp){
+        this.exp += exp;
+    }
 
     public String getName() {
         return name;
