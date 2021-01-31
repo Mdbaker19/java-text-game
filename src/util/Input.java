@@ -19,6 +19,15 @@ public class Input {
         return this.sc.next();
     }
 
+    public String getInput(String message, String option1, String option2, String option3){
+        System.out.println(message);
+        String input = this.sc.next();
+        if(!input.equalsIgnoreCase(option1) && !input.equalsIgnoreCase(option2) && !input.equalsIgnoreCase(option3)){
+            return getInput("Please choose from one of the 3 options", option1, option2, option3);
+        }
+        return input;
+    }
+
     public String getAction(String message){
         System.out.println(message);
         String choice = this.sc.next();
