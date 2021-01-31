@@ -1,5 +1,10 @@
 package util;
 
+import players.Player;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class Input {
@@ -40,6 +45,23 @@ public class Input {
     public int getNum(){
         return this.sc.nextInt();
     }
+
+    public String getInventoryChoice(String message, Player player){
+        System.out.println(message);
+        HashMap<String, Integer> options = player.getInventory();
+        String input = this.sc.next();
+        if(input.equalsIgnoreCase("e")){
+            return input;
+        }
+        if(options.get(input) == null){
+            return getInventoryChoice("You do not have that item", player);
+        } else if (options.get(input) < 1){
+            return getInventoryChoice("You are out of those items", player);
+        }
+        return input;
+    }
+
+
     public int getNum(String message){
         System.out.println(message);
         String input = this.getInput();

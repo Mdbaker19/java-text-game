@@ -1,7 +1,14 @@
 [X] Add deduction from inventory
 [ ] Option to exit inventory after viewing and if no item used turn is still yours
 [X] Block chance needs to be taken into account based off agility
-[ ] Poison chance
+[ ] Poison chance to enemy and last 3 turns 3 damage
 [ ] Critical chance
 [ ] Display player and enemy
 [X] Damage needs to be taken into account based off attack and other player's defense
+[ ] Only use item if it is there
+[ ] crit chance goes up for 5 turns
+[ ] magic only enemy option, need to level to 3 to learn magic to win tho
+[ ] potion to heal only to curr max even after level up and new max is set
+[ ] chance to escape with fights, 40% chance takes your turn
+[ ] shop with equipment with bonus
+[ ] level up stats based off class type

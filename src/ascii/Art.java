@@ -108,7 +108,8 @@ public class Art {
         System.out.println("|");
     }
 
-    public void viewInventory(Player player){
+    public boolean viewInventory(Player player){
+        boolean usedItem = false;
         Input sc = new Input();
         HashMap<String, Integer> inv = player.getInventory();
         System.out.print("|");
@@ -116,7 +117,7 @@ public class Art {
             System.out.print("-");
         }
         System.out.println("|");
-
+        System.out.printf("|%-30s%n", "[E]xit");
         for(Map.Entry<String, Integer> item : inv.entrySet()){
             System.out.printf("|%-30s%s: %d%n"," ", item.getKey(), item.getValue());
         }
@@ -126,18 +127,20 @@ public class Art {
             System.out.print("-");
         }
         System.out.println("|");
-        String choice = sc.getInput("What would you like to use?");
+        String choice = sc.getInventoryChoice("What would you like to use?", player);
 
         if(choice.equalsIgnoreCase("potion")){
             System.out.println("Using Potion, Healed by 45");
             player.setHealth(player.getHealth() + 45);
             player.useItem("Potion");
+            usedItem = true;
         } else if(choice.equalsIgnoreCase("antidote")){
-            System.out.println("Using Antidote");
             if(player.getStatus().equals("poison")) {
+                System.out.println("Using Antidote");
                 System.out.println("healing poison");
                 player.setStatus("Normal");
                 player.useItem("Antidote");
+                usedItem = true;
             } else {
                 System.out.println("You do not need this item");
             }
@@ -145,8 +148,11 @@ public class Art {
             System.out.println("Using Critical");
             player.useItem("Critical");
             player.setStatus("Critical");
+            usedItem = true;
+        } else if(choice.equalsIgnoreCase("e")){
+            return false;
         }
-
+        return usedItem;
     }
 
 }
